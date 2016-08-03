@@ -1,0 +1,9 @@
+#!/bin/sh
+. $HOME/OpenFOAM/OpenFOAM-v1606+/etc/bashrc
+
+# Source tutorial run functions
+. $WM_PROJECT_DIR/bin/tools/RunFunctions
+
+# Reconstruct
+runApplication reconstructPar -allRegions
+
