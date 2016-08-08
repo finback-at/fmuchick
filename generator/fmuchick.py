@@ -174,18 +174,30 @@ class MyFrame(wx.Frame):
 
     def generate(self, event):  # wxGlade: MyFrame.<event_handler>
         #print "Event handler 'generate' not implemented!"
-        self.saveCFG()        
+        self.saveCFG() 
+        self.makeFmuDir()		
         self.generateXML()
         self.generateModelH()
         self.ganerateVariablesC()
         self.makeDLL()
-        self.zip_directory("fmu")        
+        self.zip_directory("fmu")
+        print "FMU is generated successfully!"
         event.Skip()
 
     def closeEnd(self, event):  # wxGlade: MyFrame.<event_handler>
         #print "Event handler 'closeEnd' not implemented!"
         self.Close(True)        
         event.Skip()
+
+    def makeFmuDir(self):
+        if not os.path.isdir("fmu"):
+            os.mkdir("fmu")
+            os.mkdir("fmu\\binaries")
+            os.mkdir("fmu\\binaries\\win32")
+            os.mkdir("fmu\\binaries\\win64")
+            os.mkdir("fmu\\documentation")
+            os.mkdir("fmu\\resources")
+            os.mkdir("fmu\\sources")
 
     def saveCFG(self):
         f = open("fmuchick.cfg","w")
